@@ -57,13 +57,14 @@ public:
     AnimatedOBJ(std::list<const char*> path, std::string const vertexShader, std::string const fragmentShader, std::string const texture);
     
     void charger();
-    void afficher(glm::mat4 &projection, glm::mat4 &modelview, int frame);
+    void afficher(glm::mat4 &projection, glm::mat4 &modelview, int frame, int animation);
+    void ajouterAnimation(std::list<const char*> path, std::string const vertexShader, std::string const fragmentShader, std::string const texture);
     
 private:
     std::vector<glm::vec3> interpole_sec(std::vector<glm::vec3> a, std::vector<glm::vec3> b, int i, int interval);
-    
-    std::vector<ModelOBJ> frames;
-    int THE_FRAME;
+    ModelOBJ *obj;
+    std::vector< std::vector<glm::vec3> > vertices_tab;
+    std::vector< std::vector< std::vector<glm::vec3> > > animations_vertices;
 };
 
 #endif /* defined(__OpenGL__ModelOBJ__) */

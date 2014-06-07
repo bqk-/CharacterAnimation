@@ -16,90 +16,102 @@
 #include "AnimatedOBJ.h"
 
 AnimatedOBJ::AnimatedOBJ(std::list<const char*> path, std::string const vertexShader, std::string const fragmentShader, std::string const texture){
-    
+
+    obj=NULL;
     std::list<const char*>::const_iterator
     lit (path.begin()),
     lend(path.end());
-    //int i=0, interval = 24;
-    //ModelOBJ *n=NULL;
+    obj =new ModelOBJ(*path.begin(),vertexShader,fragmentShader,texture);
+    int i=0, interval = 24;
+    ModelOBJ* n = NULL;
+    std::vector<glm::vec3> new_vertices;
     for(;lit!=lend;++lit)
     {
         ModelOBJ o(*lit,vertexShader,fragmentShader,texture);
-        //ModelOBJ n();
         std::cout << *lit << std::endl;
-        frames.push_back(o);
-        /*
+        vertices_tab.push_back(o.getVertices());
+
         if(++lit!=lend)
         {
             std::cout << *lit << std::endl;
-            n= new ModelOBJ(*lit,vertexShader,fragmentShader,texture);
+            n = new ModelOBJ(*lit,vertexShader,fragmentShader,texture);
             
         }
         else
         {
             std::cout << *path.begin() << std::endl;
-            n= new ModelOBJ(*path.begin(),vertexShader,fragmentShader,texture);
+            n = new ModelOBJ(*path.begin(),vertexShader,fragmentShader,texture);
         }
         lit--;
-        i=0;
+        i=1;
         while(i<interval)
         {
             std::cout << "Interpolation " << i << "/" << interval  << std::endl;
-            std::vector<glm::vec3> new_vertices = interpole_sec(o.getVertices(),n->getVertices(),i,interval);
-            ModelOBJ t(new_vertices,o,vertexShader,fragmentShader,texture);
-            frames.push_back(t);
+            new_vertices = interpole_sec(o.getVertices(),n->getVertices(),i,interval);
+            vertices_tab.push_back(new_vertices);
             i++;
         }
-         */
     }
-    frames.push_back(frames[0]);
-    THE_FRAME = frames.size();
-   
+    animations_vertices.push_back(vertices_tab);
+    std::cout << "Frames : " << vertices_tab.size() << std::endl;
 };
 
+void AnimatedOBJ::ajouterAnimation(std::list<const char*> path, std::string const vertexShader, std::string const fragmentShader, std::string const texture){
+    vertices_tab.clear();
+    std::list<const char*>::const_iterator
+    lit (path.begin()),
+    lend(path.end());
+    int i=0, interval = 24;
+    ModelOBJ* n = NULL;
+    std::vector<glm::vec3> new_vertices;
+    for(;lit!=lend;++lit)
+    {
+        ModelOBJ o(*lit,vertexShader,fragmentShader,texture);
+        std::cout << *lit << std::endl;
+        vertices_tab.push_back(o.getVertices());
+        
+        if(++lit!=lend)
+        {
+            std::cout << *lit << std::endl;
+            n = new ModelOBJ(*lit,vertexShader,fragmentShader,texture);
+            
+        }
+        else
+        {
+            std::cout << *path.begin() << std::endl;
+            n = new ModelOBJ(*path.begin(),vertexShader,fragmentShader,texture);
+        }
+        lit--;
+        i=1;
+        while(i<interval)
+        {
+            std::cout << "Interpolation " << i << "/" << interval  << std::endl;
+            new_vertices = interpole_sec(o.getVertices(),n->getVertices(),i,interval);
+            vertices_tab.push_back(new_vertices);
+            i++;
+        }
+    }
+    animations_vertices.push_back(vertices_tab);
+    std::cout << "Frames : " << vertices_tab.size() << std::endl;
+}
 
 void AnimatedOBJ::charger()
 {
-    //frames[0].charger();
-    
-      for(int i = 0; i != frames.size(); i++) {
-         frames[i].charger();
-     }
-      
+   obj->charger();
 }
 
-void AnimatedOBJ::afficher(glm::mat4 &projection, glm::mat4 &modelview, int frame)
+void AnimatedOBJ::afficher(glm::mat4 &projection, glm::mat4 &modelview, int frame, int animation)
 {
-    /*
-    std::cout << "Affichage Frame " << frame%frames.size() << std::endl;
-    int prev=0,next=0;
-    std::vector<glm::vec3> tmp_vertices;
-    if(frame%24==0)
-    {
-        frames[THE_FRAME].updateVBO(frames[frame%24].getVerticesAddr(), frames[frame%24].getVertices().size() * sizeof(glm::vec3), 0);
-    }
+    if(animation==0)
+        obj->recharger(animations_vertices[0][0]);
     else
-    {
-        do{
-            frame--;
-        }
-        while(frame%24==0);
-        prev=frame%24;
-        next=prev+1;
-        if(next >= frames.size())
-            next=0;
-        tmp_vertices=interpole_sec(frames[prev].getVertices(), frames[prev+1].getVertices(), frame, 24);
-        frames[THE_FRAME].updateVBO(&tmp_vertices, frames[frame%24].getVertices().size() * sizeof(glm::vec3), 0);
-    }
-    frames[THE_FRAME].afficher(projection, modelview);
-     */
-    frames[frame].afficher(projection, modelview);
+        obj->recharger(animations_vertices[animation-1][frame]);
+    obj->afficher(projection, modelview);
 }
 
 
 std::vector<glm::vec3> AnimatedOBJ::interpole_sec(std::vector<glm::vec3> a, std::vector<glm::vec3> b, int j, int interval)
 {
-    std::cout << "Interpolation " << j << "/" << interval  << std::endl;
     glm::vec3 tmp;
     std::vector<glm::vec3> result;
     for(int i = 0; i < a.size(); i++) {

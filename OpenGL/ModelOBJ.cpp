@@ -195,6 +195,85 @@ void ModelOBJ::charger()
     glBindVertexArray(0);
 }
 
+void ModelOBJ::recharger(std::vector<glm::vec3> new_vertices)
+{
+    // Destruction d'un Èventuel ancien VBO
+    
+    if(glIsBuffer(m_vboID) == GL_TRUE)
+        glDeleteBuffers(1, &m_vboID);
+    
+    
+    // GÈnÈration de l'ID
+    
+    glGenBuffers(1, &m_vboID);
+    
+    
+    // Verrouillage du VBO
+    
+    glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
+    
+    
+    // Allocation de la mÈmoire vidÈo
+    verticesCoord=new_vertices;
+    
+    glBufferData(GL_ARRAY_BUFFER,  (verticesCoord.size() * sizeof(glm::vec3)) + (textureCoords.size() * sizeof(glm::vec2)), 0, GL_STATIC_DRAW);
+    
+    
+    // Transfert des donnÈes
+    
+    glBufferSubData(GL_ARRAY_BUFFER, 0, verticesCoord.size() * sizeof(glm::vec3), &verticesCoord[0]);
+    glBufferSubData(GL_ARRAY_BUFFER, verticesCoord.size() * sizeof(glm::vec3), textureCoords.size() * sizeof(glm::vec2), &textureCoords[0]);
+    
+    
+    // DÈverrouillage de l'objet
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    
+    // Destruction d'un Èventuel ancien VAO
+    
+    if(glIsVertexArray(m_vaoID) == GL_TRUE)
+        glDeleteVertexArrays(1, &m_vaoID);
+    
+    
+    // GÈnÈration de l'ID du VAO
+    
+    glGenVertexArrays(1, &m_vaoID);
+    
+    
+    // Verrouillage du VAO
+    
+    glBindVertexArray(m_vaoID);
+    
+    
+    // Verrouillage du VBO
+    
+    glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
+    
+    
+    // AccËs aux vertices dans la mÈmoire vidÈo
+    
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+    glEnableVertexAttribArray(0);
+    
+    
+    // AccËs aux coordonnÈes de texture dans la mÈmoire vidÈo
+    
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(verticesCoord.size() * sizeof(glm::vec3)));
+    glEnableVertexAttribArray(2);
+    
+    
+    // DÈverrouillage du VBO
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    
+    // DÈverrouillage du VAO
+    
+    glBindVertexArray(0);
+}
+
+
 
 void ModelOBJ::afficher(glm::mat4 &projection, glm::mat4 &modelview)
 {

@@ -61,6 +61,7 @@ public:
     void updateVBO(void *donnees, int tailleBytes, int decalage);
     std::vector<glm::vec3> getVertices();
     void* getVerticesAddr();
+    void recharger(std::vector<glm::vec3> new_vertices);
     
 private:
     std::vector<glm::vec3> verticesCoord,verticesNormals;

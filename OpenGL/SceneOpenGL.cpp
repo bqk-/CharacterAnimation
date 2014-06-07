@@ -180,14 +180,25 @@ void SceneOpenGL::bouclePrincipale()
     Shader shaderTexture("Shaders/texture.vert", "Shaders/texture.frag");
     shaderTexture.charger();
     
-    //Mario
+    //Marche
     std::list<const char*> path;
+    path.push_back("frame2.obj");
     path.push_back("frame1.obj");
     path.push_back("frame2.obj");
     path.push_back("frame3.obj");
-    AnimatedOBJ mario(path, "Shaders/texture.vert", "Shaders/texture.frag", "Textures/elephant1.jpg");
-    mario.charger();
-
+    
+    AnimatedOBJ elephant(path, "Shaders/texture.vert", "Shaders/texture.frag", "Textures/elephant1.jpg");
+    
+    //Debout
+    path.clear();
+    path.push_back("debout0.obj");
+    path.push_back("debout1.obj");
+    path.push_back("debout2.obj");
+    path.push_back("debout3.obj");
+    
+    elephant.ajouterAnimation(path, "Shaders/texture.vert", "Shaders/texture.frag", "Textures/elephant1.jpg");
+    elephant.charger();
+    
     // Objet Caisse
 
     Caisse caisse(2.0, "Shaders/texture.vert", "Shaders/texture.frag", "Textures/Caisse2.jpg");
@@ -207,6 +218,7 @@ void SceneOpenGL::bouclePrincipale()
     //Repere Repere("Shaders/repere.vert", "Shaders/repere.frag");
     
     // Boucle principale
+    int animation = 0;
 
     while(!m_input.terminer())
     {
@@ -222,9 +234,11 @@ void SceneOpenGL::bouclePrincipale()
         if(m_input.getTouche(SDL_SCANCODE_ESCAPE))
            break;
 
-        if(m_input.getTouche(SDL_SCANCODE_W))
-            if(++frame>3)
-                frame=0;
+        if(m_input.getTouche(SDL_SCANCODE_W) && animation==0)
+            animation = 1;
+        if(m_input.getTouche(SDL_SCANCODE_E) && animation==0)
+            animation = 2;
+        
         
         camera.deplacer(m_input);
 
@@ -251,32 +265,16 @@ void SceneOpenGL::bouclePrincipale()
         modelview = translate(modelview, vec3(-30, 3, -20));
         
         
-        mario.afficher(projection,modelview, frame);
-        
-        //Repere.afficher(projection,modelview);
+        if(++frame>95)
+        {
+            frame=0;
+            animation=0;
+        }
+        elephant.afficher(projection, modelview, frame, animation);
 
         // Restauration de la matrice
         
         modelview = sauvegardeModelview;
-        
-        
-        // DAE MODEL RENDERING
-        // Activate Alpha Blending
-        /*glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable( GL_BLEND );
-        
-        // Draw meshes
-        std::vector<Model3D*>::iterator it;
-        for(it=models.begin(); it!=models.end(); it++)
-        {
-            pushMatrix();
-            rotate( angle2, 1, 0, 0 );
-            rotate( angle1, 0, 0, 1 );
-            scale( scale_size, scale_size, scale_size);
-            (*it)->draw();
-            popMatrix();
-        }
-        */
         
         // Affichage du cube
         

@@ -16,6 +16,14 @@
 		213410BA1938E78400720920 /* frame4.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 213410B21938E78400720920 /* frame4.mtl */; };
 		213410BB1938E78400720920 /* frame4.obj in Resources */ = {isa = PBXBuildFile; fileRef = 213410B31938E78400720920 /* frame4.obj */; };
 		213410BE1938FE0B00720920 /* AnimatedOBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213410BC1938FE0B00720920 /* AnimatedOBJ.cpp */; };
+		216279E2194361C700387034 /* debout0.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 216279DA194361C700387034 /* debout0.mtl */; };
+		216279E3194361C700387034 /* debout0.obj in Resources */ = {isa = PBXBuildFile; fileRef = 216279DB194361C700387034 /* debout0.obj */; };
+		216279E4194361C700387034 /* debout1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 216279DC194361C700387034 /* debout1.mtl */; };
+		216279E5194361C700387034 /* debout1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 216279DD194361C700387034 /* debout1.obj */; };
+		216279E6194361C700387034 /* debout2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 216279DE194361C700387034 /* debout2.mtl */; };
+		216279E7194361C700387034 /* debout2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 216279DF194361C700387034 /* debout2.obj */; };
+		216279E8194361C700387034 /* debout3.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 216279E0194361C700387034 /* debout3.mtl */; };
+		216279E9194361C700387034 /* debout3.obj in Resources */ = {isa = PBXBuildFile; fileRef = 216279E1194361C700387034 /* debout3.obj */; };
 		21B49B6F192B385000060398 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B49B6E192B385000060398 /* OpenGL.framework */; };
 		21B49B72192B386100060398 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B49B70192B386100060398 /* SDL2_image.framework */; };
 		21B49B73192B386100060398 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B49B71192B386100060398 /* SDL2.framework */; };
@@ -52,6 +60,14 @@
 		213410B31938E78400720920 /* frame4.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = frame4.obj; sourceTree = "<group>"; };
 		213410BC1938FE0B00720920 /* AnimatedOBJ.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedOBJ.cpp; sourceTree = "<group>"; };
 		213410BD1938FE0B00720920 /* AnimatedOBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedOBJ.h; sourceTree = "<group>"; };
+		216279DA194361C700387034 /* debout0.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout0.mtl; sourceTree = "<group>"; };
+		216279DB194361C700387034 /* debout0.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout0.obj; sourceTree = "<group>"; };
+		216279DC194361C700387034 /* debout1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout1.mtl; sourceTree = "<group>"; };
+		216279DD194361C700387034 /* debout1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout1.obj; sourceTree = "<group>"; };
+		216279DE194361C700387034 /* debout2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout2.mtl; sourceTree = "<group>"; };
+		216279DF194361C700387034 /* debout2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout2.obj; sourceTree = "<group>"; };
+		216279E0194361C700387034 /* debout3.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout3.mtl; sourceTree = "<group>"; };
+		216279E1194361C700387034 /* debout3.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debout3.obj; sourceTree = "<group>"; };
 		21B49B6E192B385000060398 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		21B49B70192B386100060398 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		21B49B71192B386100060398 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -112,6 +128,14 @@
 		213410AB1938E78400720920 /* Elephant */ = {
 			isa = PBXGroup;
 			children = (
+				216279DA194361C700387034 /* debout0.mtl */,
+				216279DB194361C700387034 /* debout0.obj */,
+				216279DC194361C700387034 /* debout1.mtl */,
+				216279DD194361C700387034 /* debout1.obj */,
+				216279DE194361C700387034 /* debout2.mtl */,
+				216279DF194361C700387034 /* debout2.obj */,
+				216279E0194361C700387034 /* debout3.mtl */,
+				216279E1194361C700387034 /* debout3.obj */,
 				213410AC1938E78400720920 /* frame1.mtl */,
 				213410AD1938E78400720920 /* frame1.obj */,
 				213410AE1938E78400720920 /* frame2.mtl */,
@@ -273,18 +297,26 @@
 				213410B61938E78400720920 /* frame2.mtl in Resources */,
 				8268184416CCF2A500F9D438 /* InfoPlist.strings in Resources */,
 				213410B51938E78400720920 /* frame1.obj in Resources */,
+				216279E6194361C700387034 /* debout2.mtl in Resources */,
 				213410B91938E78400720920 /* frame3.obj in Resources */,
 				213410B41938E78400720920 /* frame1.mtl in Resources */,
 				8268184A16CCF2A500F9D438 /* Credits.rtf in Resources */,
 				8268185016CCF2A500F9D438 /* MainMenu.xib in Resources */,
+				216279E8194361C700387034 /* debout3.mtl in Resources */,
 				213410B71938E78400720920 /* frame2.obj in Resources */,
 				213410BA1938E78400720920 /* frame4.mtl in Resources */,
+				216279E2194361C700387034 /* debout0.mtl in Resources */,
 				829C354F16CCF42C007EEF23 /* Shaders in Resources */,
 				213410BB1938E78400720920 /* frame4.obj in Resources */,
+				216279E5194361C700387034 /* debout1.obj in Resources */,
+				216279E9194361C700387034 /* debout3.obj in Resources */,
 				21B49D5C192BFAE300060398 /* mario_obj.obj in Resources */,
 				21B49D5B192BFAE300060398 /* Luigi_obj.obj in Resources */,
+				216279E4194361C700387034 /* debout1.mtl in Resources */,
 				829C355116CCF42C007EEF23 /* Textures in Resources */,
+				216279E3194361C700387034 /* debout0.obj in Resources */,
 				213410B81938E78400720920 /* frame3.mtl in Resources */,
+				216279E7194361C700387034 /* debout2.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
